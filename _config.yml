@@ -1,4 +1,9 @@
 auto: true
 server: true
-baseurl:
-permalink: /:title
+baseurl: /multilingual
+permalink: /:categories/:title
+languages:
+  - name: 'English'
+    key: 'en'
+  - name: 'Español'
+    key: 'es'

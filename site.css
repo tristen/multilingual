@@ -43,6 +43,7 @@ table { border-collapse: collapse; border-spacing:0; }
 body,
 input,
 textarea {
+  background:#f6f6f6;
   color:#333;
   font:15px/1.67 'Helvetica Neue', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing:antialiased;
@@ -88,25 +89,36 @@ h4, h5 {
   }
 
 p {
-  font-size:15px;
   margin:0 0 20px;
   }
   p:last-child { margin-bottom:0;}
 
 /* Links */
 a {
-  color:#77c453;
+  color:#28679B;
   text-decoration:none;
+  font-weight:bold;
   }
-  a:visited {
-    color:#9ed485;
-    }
   a:hover {
-    text-decoration:none;
-    color:#54af29;
+    color:#3B96CB;
     }
-  a:active {
-    color:#9ed485;
+
+.button {
+  display:inline-block;
+  background:#28679B;
+  color:#fff;
+  padding:8px 20px;
+  -webkit-transition:color 50ms linear, background-color 50ms linear;
+     -moz-transition:color 50ms linear, background-color 50ms linear;
+       -o-transition:color 50ms linear, background-color 50ms linear;
+          transition:color 50ms linear, background-color 50ms linear;
+  -webkit-border-radius:4px;
+          border-radius:4px;
+  }
+  .open .button,
+  .button:hover {
+    background-color:#3B96CB;
+    color:#fff;
     }
 
 abbr {
@@ -297,8 +309,8 @@ table {
 .icon {
   background:transparent url(img/sprite.png) no-repeat 0 0;
   display:block;
-  width:30px;
-  height:30px;
+  width:20px;
+  height:20px;
   text-indent:-999em;
   }
 
@@ -306,8 +318,23 @@ table {
 ------------------------------------------------------- */
 .container {
   max-width:1600px;
+  width:960px;
+  margin:40px auto;
+  }
+  .container h1 {
+    text-align:center;
+    font-weight:bold;
+    font-size:72px;
+    color:#ccc;
+    }
+
+.posts {
+  background:#fff;
+  padding:40px;
+  width:280px;
   margin:0 auto;
-  overflow:hidden;
+  -webkit-border-radius:8px;
+          border-radius:8px;
   }
 
 /* Columns
@@ -350,6 +377,75 @@ table {
 .pad8    { padding:80px 40px; }
 .pad4c   { padding:40px; }
 
+/* Site styling
+------------------------------------------------------- */
+.dropdown-menu {
+  display:inline-block;
+  position:relative;
+  margin-top:40px;
+  }
+  .dropdown-menu .icon {
+    float:right;
+    position:relative;
+    top:3px;
+    margin-left:5px;
+    }
+
+.dropdown {
+  position:absolute;
+  top:100%;
+  left:0;
+  z-index:1000;
+  float:left;
+  min-width:160px;
+  padding:5px 0;
+  margin:0;
+  display:none;
+  text-align:left;
+  color:#fff;
+  background-color:#2e2e2e;
+  -webkit-border-radius:4px;
+          border-radius:4px;
+  -webkit-box-shadow:0 5px 10px rgba(0,0,0,0.2);
+     -moz-box-shadow:0 5px 10px rgba(0,0,0,0.2);
+          box-shadow:0 5px 10px rgba(0,0,0,0.2);
+  -webkit-background-clip:padding-box;
+     -moz-background-clip:padding;
+          background-clip:padding-box;
+  }
+  .dropdown li {
+    display:block;
+    }
+  .dropdown > li > a {
+    background:transparent;
+    }
+  .dropdown > li > a {
+    display:block;
+    padding:6px 16px;
+    float:none;
+    clear:both;
+    line-height:20px;
+    color:#fff;
+    white-space:nowrap;
+    }
+  .dropdown > li > a:hover,
+  .dropdown > li > a:focus {
+    background-color:#000;
+    color:#fff;
+    text-decoration:none;
+    }
+  .dropdown a.active,
+  .dropdown a.active:hover {
+    background:#28679B;
+    }
+
+.open {
+  *z-index:1000;
+  }
+  .open > .dropdown {
+    display:block;
+    }
+
 /* Additional Utility Classes
 ------------------------------------------------------- */
 .fr   { float:right; }
@@ -358,7 +454,7 @@ table {
 .hide { display:none; }
 
 .deemphasize  { color:#888; }
-.center       { text-align:center; }
+.centered     { text-align:center; }
 
 /* Markup free clearing
 Details: http://www.positioniseverything.net/easyclearing.html

@@ -1,4 +1,9 @@
 ---
+translations:
+  en:
+    post-title: 'Posts'
+  es:
+    post-title: 'Mensajes'
 ---
 <!DOCTYPE html>
 <html>
@@ -10,8 +15,42 @@
   <link href='{{site.baseurl}}/site.css' rel='stylesheet' />
 </head>
 <body>
+
+  <div class='centered'>
+    <div class='dropdown-menu'>
+      {% for item in site.languages %}
+        {% if page.lang == item.key %}
+          <a href='#' class='button dropdown-hover'><span class='icon down'></span>{{item.name}}</a>
+        {% endif %}
+      {% endfor %}
+      <ul class='dropdown'>
+        {% for i in site.languages %}
+          {% for post in site.posts %}
+          {% if {{page.date}} == {{post.date}} and {{post.lang}} == {{i.key}} %}
+            <li><a href='{{site.baseurl}}{{post.url}}' {% if page.lang == i.key %}class='active'{% endif %}>{{i.name}}</a></li>
+            {% endif %}
+          {% endfor %}
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+
   <div class='container'>
+    <h1>{{page.title}}</h1>
+
     {{content}}
+
+    <div class='posts'>
+      <h3 class='label'>{{page.translations.[page.lang].post-title}}</h3>
+      <ul>
+        {% for post in site.categories.blog %}
+          {% if post.lang == page.lang %}
+            <li><a href='{{site.baseurl}}{{post.url}}'>{{post.title}}</a></li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </div>
+
   </div>
   <script src='{{site.baseurl}}/site.js'></script>
 </body>

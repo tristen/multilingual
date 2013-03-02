@@ -1,4 +1,33 @@
-fresh-start
-===========
+## Multilingual Jekyll
 
-Extremely barebones starting point for responsive sites built on Jekyll.
+A rough draft. The goal is to create a sustainable architecture to manage a site in more than one language.
+
+The current architecture looks like this:
+
+- Each Jekyll post includes a date with time stamp in its front matter that matches a translated one
+- Interface elements that require translation are set up in the front matter of its template:
+
+    ---
+    translations:
+      en:
+        post-title: 'Posts'
+      es:
+        post-title: 'Mensajes'
+    ---
+
+ They are then accessed like  `<h3 class='label'>{{page.translations.[page.lang].post-title}}</h3>` where `[page.lang]`
+ is a ISO 2 Letter Language code defined in each post.
+
+- Urls are structured as `permalink: /:categories/:title` and as such, each post must match a category structure in its front matter
+that looks something like:
+
+    categories:
+     - en
+     - blog
+
+Where the first value is the letter language code followed by any others required.
+
+## Cons
+
+- Ensuring categories are set up in the right order is wacky.
+- Ensuring the translated post has the same date with timestamp is wacky.
