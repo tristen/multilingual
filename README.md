@@ -32,3 +32,8 @@ Where the first value is the letter language code followed by any others require
 - In the language dropdown you need to iterate over {{ for posts in site.posts }} which could get expensive to generate.
 - Ensuring categories are set up in the right order is wacky.
 - Ensuring the translated post has the same date with timestamp is wacky.
+
+## TODOs
+- Drop the category per post requirement and derive this from the folder structure?
+- Demonstrate how partials like `_include/block.html` would work.
+
