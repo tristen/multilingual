@@ -18,36 +18,43 @@ translations:
 </head>
 <body>
 
+  {% assign lang = page.categories[0] %}
+
+  {% capture filename %}{{page.filename | replace:'.md','' | replace:'/en/','/es/'}}{% endcapture %}
+  {{page.filename}}<br />
+  {{filename}}<br />
+  {{foo | post_url}}
+
   <div class='limiter'>
     <div class='header clearfix'>
       <div class='dropdown-menu'>
         {% for item in site.languages %}
-          {% if page.lang == item.key %}
+          {% if lang == item.key %}
             <a href='#' class='button dropdown-hover'><span class='icon down'></span>{{item.name}}</a>
           {% endif %}
         {% endfor %}
         <ul class='dropdown'>
-          {% for i in site.languages %}
-            <li>
-              <a
-                href="{{site.baseurl}}{% if i.key == 'es' %}{{page.url | replace:'/en', '/es'}}{% endif %}{% if i.key == 'en' %}{{page.url | replace:'/es', '/en'}}{% endif %}"
-                {% if page.lang == i.key %}class='active'{% endif %}>
-                {{i.name}}
-              </a>
-            </li>
-          {% endfor %}
+          {% if lang == 'en' %}
+            {% capture en %}{{page.filename | replace:'.md','' | replace:'/es/','/en/'}}{% endcapture %}
+            <li><a href='{{site.baseurl}}{{en | post_url}}'>English</a></li>
+          {% endif %}
+
+          {% capture es %}{{page.filename | replace:'.md','' | replace:'/en/','/es/'}}{% endcapture %}
+          {{es}} <br />
+          {{es | post_url}}
+          <li><a href='{{site.baseurl}}{{es | post_url}}'>Spanish</a></li>
         </ul>
       </div>
-      <a href='{{site.baseurl}}/{{page.lang}}/' class='home'>{{page.translations.[page.lang].home-link}}</a>
+      <a href='{{site.baseurl}}/{{lang}}/' class='home'>{{page.translations.[lang].home-link}}</a>
     </div>
     <div class='container clearfix'>
       <div class='posts fl'>
         <div class='inner'>
-          <h3 class='label'>{{page.translations.[page.lang].post-title}}</h3>
+          <h3 class='label'>{{page.translations.[lang].post-title}}</h3>
           <ul>
             {% for post in site.categories.blog %}
-              {% if post.lang == page.lang %}
-                <li><a href='{{site.baseurl}}{{post.url}}'>{{post.title}}</a></li>
+              {% if post.categories[0] == lang %}
+                <li><a href='{{site.baseurl}}{{post.url}}' {% if post.url == page.url %}class='active'{% endif %}>{{post.title}}</a></li>
               {% endif %}
             {% endfor %}
           </ul>
