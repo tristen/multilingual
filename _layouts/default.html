@@ -28,11 +28,13 @@ translations:
         {% endfor %}
         <ul class='dropdown'>
           {% for i in site.languages %}
-            {% for post in site.posts %}
-            {% if {{page.date}} == {{post.date}} and {{post.lang}} == {{i.key}} %}
-              <li><a href='{{site.baseurl}}{{post.url}}' {% if page.lang == i.key %}class='active'{% endif %}>{{i.name}}</a></li>
-              {% endif %}
-            {% endfor %}
+            <li>
+              <a
+                href='{{site.baseurl}}/{{i.key}}/{% for c in page.categories %}{% unless forloop.index == 1 %}{{c}}/{% endunless %}{% endfor %}{{page.title | strip_html | downcase | replace:' ', '-'}}'
+                {% if page.lang == i.key %}class='active'{% endif %}>
+                {{i.name}}
+              </a>
+            </li>
           {% endfor %}
         </ul>
       </div>
