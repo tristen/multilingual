@@ -30,7 +30,7 @@ translations:
           {% for i in site.languages %}
             <li>
               <a
-                href='{{site.baseurl}}/{{i.key}}/{% for c in page.categories %}{% unless forloop.index == 1 %}{{c}}/{% endunless %}{% endfor %}{{page.title | strip_html | downcase | replace:' ', '-'}}'
+                href="{{site.baseurl}}{% if i.key == 'es' %}{{page.url | replace:'/en', '/es'}}{% endif %}{% if i.key == 'en' %}{{page.url | replace:'/es', '/en'}}{% endif %}"
                 {% if page.lang == i.key %}class='active'{% endif %}>
                 {{i.name}}
               </a>
@@ -40,7 +40,6 @@ translations:
       </div>
       <a href='{{site.baseurl}}/{{page.lang}}/' class='home'>{{page.translations.[page.lang].home-link}}</a>
     </div>
-
     <div class='container clearfix'>
       <div class='posts fl'>
         <div class='inner'>
