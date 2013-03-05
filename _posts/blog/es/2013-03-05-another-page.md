@@ -1,5 +1,6 @@
 ---
 layout: default
+title: 'Otro post'
 categories:
  - es
  - blog

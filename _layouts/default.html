@@ -20,11 +20,6 @@ translations:
 
   {% assign lang = page.categories[0] %}
 
-  {% capture filename %}{{page.filename | replace:'.md','' | replace:'/en/','/es/'}}{% endcapture %}
-  {{page.filename}}<br />
-  {{filename}}<br />
-  {{foo | post_url}}
-
   <div class='limiter'>
     <div class='header clearfix'>
       <div class='dropdown-menu'>
@@ -34,15 +29,9 @@ translations:
           {% endif %}
         {% endfor %}
         <ul class='dropdown'>
-          {% if lang == 'en' %}
-            {% capture en %}{{page.filename | replace:'.md','' | replace:'/es/','/en/'}}{% endcapture %}
-            <li><a href='{{site.baseurl}}{{en | post_url}}'>English</a></li>
-          {% endif %}
-
-          {% capture es %}{{page.filename | replace:'.md','' | replace:'/en/','/es/'}}{% endcapture %}
-          {{es}} <br />
-          {{es | post_url}}
-          <li><a href='{{site.baseurl}}{{es | post_url}}'>Spanish</a></li>
+        {% for i in site.languages %}
+        <li><a href='{{site.baseurl}}/{{i.key}}{% for c in page.categories %}{% unless forloop.index == 1 %}{{c}}{% endunless %}/{% endfor %}{{page.slug}}' {% if {{lang}} == i.key %}class='active'{% endif %}>{{i.name}}</a></li>
+        {% endfor %}
         </ul>
       </div>
       <a href='{{site.baseurl}}/{{lang}}/' class='home'>{{page.translations.[lang].home-link}}</a>

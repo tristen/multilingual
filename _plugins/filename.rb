@@ -6,7 +6,8 @@ class Jekyll::Post
 
   def to_liquid
     original_to_liquid.deep_merge({
-      'filename' => @name
+      'filename' => @name,
+      'slug' => @slug
     })
   end
 end
