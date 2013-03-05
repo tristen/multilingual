@@ -35,5 +35,3 @@ Where the first value is the letter language code followed by any others require
 
 ## TODOs
 - Drop the category per post requirement and derive this from the folder structure?
-- Demonstrate how partials like `_include/block.html` would work.
-

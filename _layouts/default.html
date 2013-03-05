@@ -1,8 +1,10 @@
 ---
 translations:
   en:
+    home-link: 'Home'
     post-title: 'Posts'
   es:
+    home-link: 'Casa'
     post-title: 'Mensajes'
 ---
 <!DOCTYPE html>
@@ -16,41 +18,51 @@ translations:
 </head>
 <body>
 
-  <div class='centered'>
-    <div class='dropdown-menu'>
-      {% for item in site.languages %}
-        {% if page.lang == item.key %}
-          <a href='#' class='button dropdown-hover'><span class='icon down'></span>{{item.name}}</a>
-        {% endif %}
-      {% endfor %}
-      <ul class='dropdown'>
-        {% for i in site.languages %}
-          {% for post in site.posts %}
-          {% if {{page.date}} == {{post.date}} and {{post.lang}} == {{i.key}} %}
-            <li><a href='{{site.baseurl}}{{post.url}}' {% if page.lang == i.key %}class='active'{% endif %}>{{i.name}}</a></li>
-            {% endif %}
-          {% endfor %}
-        {% endfor %}
-      </ul>
-    </div>
-  </div>
-
-  <div class='container'>
-    <h1>{{page.title}}</h1>
-
-    {{content}}
-
-    <div class='posts'>
-      <h3 class='label'>{{page.translations.[page.lang].post-title}}</h3>
-      <ul>
-        {% for post in site.categories.blog %}
-          {% if post.lang == page.lang %}
-            <li><a href='{{site.baseurl}}{{post.url}}'>{{post.title}}</a></li>
+  <div class='limiter'>
+    <div class='header clearfix'>
+      <div class='dropdown-menu'>
+        {% for item in site.languages %}
+          {% if page.lang == item.key %}
+            <a href='#' class='button dropdown-hover'><span class='icon down'></span>{{item.name}}</a>
           {% endif %}
         {% endfor %}
-      </ul>
+        <ul class='dropdown'>
+          {% for i in site.languages %}
+            {% for post in site.posts %}
+            {% if {{page.date}} == {{post.date}} and {{post.lang}} == {{i.key}} %}
+              <li><a href='{{site.baseurl}}{{post.url}}' {% if page.lang == i.key %}class='active'{% endif %}>{{i.name}}</a></li>
+              {% endif %}
+            {% endfor %}
+          {% endfor %}
+        </ul>
+      </div>
+      <a href='{{site.baseurl}}/{{page.lang}}/' class='home'>{{page.translations.[page.lang].home-link}}</a>
     </div>
 
+    <div class='container clearfix'>
+      <div class='posts fl'>
+        <div class='inner'>
+          <h3 class='label'>{{page.translations.[page.lang].post-title}}</h3>
+          <ul>
+            {% for post in site.categories.blog %}
+              {% if post.lang == page.lang %}
+                <li><a href='{{site.baseurl}}{{post.url}}'>{{post.title}}</a></li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+        </div>
+        <div class='block'>
+          <div class='inner'>
+            {% capture ad %}{% include blocks/ad.md %}{% endcapture %}
+            {{ ad | markdownify }}
+          </div>
+        </div>
+      </div>
+      <div class='main fl'>
+        <h1>{{page.title}}</h1>
+        {{content}}
+      </div>
+    </div>
   </div>
   <script src='{{site.baseurl}}/site.js'></script>
 </body>
