@@ -102,6 +102,9 @@ a {
   a:hover {
     color:#3B96CB;
     }
+  a.active {
+    color:#404040;
+    }
 
 .button {
   display:inline-block;
@@ -136,6 +139,10 @@ hr {
   border:0;
   height:1px;
   background:#f8f8f8;
+  }
+ul {
+  list-style:disc;
+  margin-left:20px;
   }
 
 /* Block Quotes */
@@ -347,6 +354,9 @@ table {
     -webkit-border-radius:8px;
             border-radius:8px;
     }
+    .block .inner {
+      background-color:#FFA;
+      }
 
 /* Columns
 ------------------------------------------------------- */
@@ -437,6 +447,7 @@ table {
   .dropdown > li > a {
     display:block;
     padding:6px 16px;
+    margin-bottom:1px;
     float:none;
     clear:both;
     line-height:20px;
@@ -445,13 +456,13 @@ table {
     }
   .dropdown > li > a:hover,
   .dropdown > li > a:focus {
-    background-color:#000;
+    background-color:#404040;
     color:#fff;
     text-decoration:none;
     }
   .dropdown a.active,
   .dropdown a.active:hover {
-    background:#28679B;
+    background:#404040;
     }
 
 .open {
