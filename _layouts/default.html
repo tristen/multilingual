@@ -30,15 +30,19 @@ translations:
         {% endfor %}
         <ul class='dropdown'>
           {% if lang == 'es' %}
-          <li><a href='{{site.baseurl}}{{page.url | replace_first:'/es/':'/'}}'>English</a></li>
-          <li><a href='{{site.baseurl}}{{page.url}}' class='active'>Español</a></li>
+            <li><a href='{{site.baseurl}}{{page.url | replace_first:'/es/':'/'}}'>English</a></li>
+            <li><a href='{{site.baseurl}}{{page.url}}' class='active'>Español</a></li>
           {% else %}
-          <li><a href='{{site.baseurl}}{{page.url}}' class='active'>English</a></li>
-          <li><a href='{{site.baseurl}}/es{{page.url}}'>Español</a></li>
+            <li><a href='{{site.baseurl}}{{page.url}}' class='active'>English</a></li>
+            <li><a href='{{site.baseurl}}/es{{page.url}}'>Español</a></li>
           {% endif %}
         </ul>
       </div>
-      <a href='{{site.baseurl}}/{{lang}}/' class='home'>{{page.translations.[lang].home-link}}</a>
+      {% if lang == 'es' %}
+        <a href='{{site.baseurl}}/{{lang}}/' class='home'>{{page.translations.[lang].home-link}}</a>
+      {% else %}
+        <a href='{{site.baseurl}}/' class='home'>{{page.translations.[lang].home-link}}</a>
+      {% endif %}
     </div>
     <div class='container clearfix'>
       <div class='posts fl'>
