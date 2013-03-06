@@ -18,7 +18,7 @@ translations:
 </head>
 <body>
 
-  {% assign lang = page.categories[0] %}
+{% assign lang = {{page.lang}} %}
 
   <div class='limiter'>
     <div class='header clearfix'>
@@ -29,9 +29,13 @@ translations:
           {% endif %}
         {% endfor %}
         <ul class='dropdown'>
-        {% for i in site.languages %}
-        <li><a href='{{site.baseurl}}/{{i.key}}{% for c in page.categories %}{% unless forloop.index == 1 %}{{c}}{% endunless %}/{% endfor %}{{page.slug}}' {% if {{lang}} == i.key %}class='active'{% endif %}>{{i.name}}</a></li>
-        {% endfor %}
+          {% if lang == 'es' %}
+          <li><a href='{{site.baseurl}}{{page.url | replace_first:'/es/':'/'}}'>English</a></li>
+          <li><a href='{{site.baseurl}}{{page.url}}' class='active'>Español</a></li>
+          {% else %}
+          <li><a href='{{site.baseurl}}{{page.url}}' class='active'>English</a></li>
+          <li><a href='{{site.baseurl}}/es{{page.url}}'>Español</a></li>
+          {% endif %}
         </ul>
       </div>
       <a href='{{site.baseurl}}/{{lang}}/' class='home'>{{page.translations.[lang].home-link}}</a>
@@ -42,7 +46,7 @@ translations:
           <h3 class='label'>{{page.translations.[lang].post-title}}</h3>
           <ul>
             {% for post in site.categories.blog %}
-              {% if post.categories[0] == lang %}
+              {% if post.lang == lang %}
                 <li><a href='{{site.baseurl}}{{post.url}}' {% if post.url == page.url %}class='active'{% endif %}>{{post.title}}</a></li>
               {% endif %}
             {% endfor %}

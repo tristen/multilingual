@@ -1,5 +1,6 @@
 ---
 layout: default
+lang: es
 title: 'Otro post'
 categories:
  - es

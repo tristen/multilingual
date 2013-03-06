@@ -1,7 +1,7 @@
 ---
 layout: default
+lang: en
 categories:
- - en
  - blog
 ---
 
