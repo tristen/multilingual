@@ -7,3 +7,7 @@ languages:
     key: 'en'
   - name: 'Español'
     key: 'es'
+
+# Prose settings
+prose:
+  rooturl: '_posts'
