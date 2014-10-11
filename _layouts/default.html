@@ -29,8 +29,8 @@ translations:
         <ul class='dropdown'>
           {% for i in site.languages %}
             {% for post in site.posts %}
-            {% if {{page.date}} == {{post.date}} and {{post.lang}} == {{i.key}} %}
-              <li><a href='{{site.baseurl}}{{post.url}}' {% if page.lang == i.key %}class='active'{% endif %}>{{i.name}}</a></li>
+              {% if {{page.date}} == {{post.date}} and {{post.lang}} == {{i.key}} %}
+                <li><a href='{{site.baseurl}}{{post.url}}' {% if page.lang == i.key %}class='active'{% endif %}>{{i.name}}</a></li>
               {% endif %}
             {% endfor %}
           {% endfor %}
