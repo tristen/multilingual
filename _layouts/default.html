@@ -33,6 +33,13 @@ translations:
                 <li><a href='{{site.baseurl}}{{post.url}}' {% if page.lang == i.key %}class='active'{% endif %}>{{i.name}}</a></li>
               {% endif %}
             {% endfor %}
+
+            {% for post in site.pages %}
+              {% if {{page.date}} == {{post.date}} and {{post.lang}} == {{i.key}} %}
+                <li><a href='{{site.baseurl}}{{post.url}}' {% if page.lang == i.key %}class='active'{% endif %}>{{i.name}}</a></li>
+              {% endif %}
+            {% endfor %}
+
           {% endfor %}
         </ul>
       </div>
@@ -50,12 +57,6 @@ translations:
               {% endif %}
             {% endfor %}
           </ul>
-        </div>
-        <div class='block'>
-          <div class='inner'>
-            {% capture ad %}{% include blocks/ad.md %}{% endcapture %}
-            {{ ad | markdownify }}
-          </div>
         </div>
       </div>
       <div class='main fl'>
